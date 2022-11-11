@@ -12,7 +12,7 @@
 * [Python >=3.7](https://www.python.org/downloads/)
 * Django 4.1.3
 * SQLite3
-* [Poetry 1.2.2]([poetry](https://python-poetry.org/docs/#installation))
+* [Poetry 1.2.2](https://python-poetry.org/docs/#installation)
 * [Git](https://git-scm.com/downloads)
 
 
