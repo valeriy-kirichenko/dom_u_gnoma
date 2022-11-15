@@ -1,5 +1,5 @@
 """
-ASGI config for natali_catcher project.
+ASGI config for dom_u_gnoma project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'natali_catcher.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dom_u_gnoma.settings')
 
 application = get_asgi_application()

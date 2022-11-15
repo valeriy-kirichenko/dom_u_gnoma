@@ -1,5 +1,6 @@
-# natali_catcher
+# dom_u_gnoma
 Сайт рукодельных изделий (по ходу написания проекта буду добавлять описание)
+
 
 # Установка
 Системные требования
@@ -20,8 +21,8 @@
 ----------
 1. Клонируйте репозиторий и перейдите в него в командной строке:
 ```bash
-git clone 'git@github.com:valeriy-kirichenko/natali_catcher.git'
-cd natali_catcher/ # перейдите в папку с проектом
+git clone 'git@github.com:valeriy-kirichenko/dom_u_gnoma.git'
+cd dom_u_gnoma/ # перейдите в папку с проектом
 ```
 
 2. Установите необходимые пакеты:
@@ -39,7 +40,7 @@ pip install -r requirements.txt # устанавливает пакеты из r
 
 3. Запустите проект:
 ```bash
-python natali_catcher/manage.py runserver
+python dom_u_gnoma/manage.py runserver
 ```
 ----------
 Автор:

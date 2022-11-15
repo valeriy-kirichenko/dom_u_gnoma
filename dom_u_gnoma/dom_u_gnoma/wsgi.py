@@ -1,5 +1,5 @@
 """
-WSGI config for natali_catcher project.
+WSGI config for dom_u_gnoma project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'natali_catcher.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dom_u_gnoma.settings')
 
 application = get_wsgi_application()

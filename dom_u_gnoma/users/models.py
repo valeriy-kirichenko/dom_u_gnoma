@@ -26,7 +26,8 @@ class User(AbstractUser):
         'Имя пользователя',
         max_length=150,
         unique=True,
-        help_text='Введите имя пользователя'
+        help_text=('Введите имя пользователя которое'
+                   ' будет отображаться на сайте')
     )
     password = models.CharField(
         'Пароль', max_length=254, help_text='Введите пароль'
@@ -35,15 +36,15 @@ class User(AbstractUser):
         'Электронная почта',
         unique=True,
         max_length=254,
-        help_text='Введите электронную почту'
+        help_text='Введите вашу электронную почту'
     )
     first_name = models.CharField(
-        'Имя', max_length=150, help_text='Введите имя'
+        'Имя', max_length=150, help_text='Введите ваше имя'
     )
     last_name = models.CharField(
         'Фамилия',
         max_length=150,
-        help_text='Введите фамилию',
+        help_text='Введите вашу фамилию (не обязательно)',
         blank=True
     )
     send_messages = models.BooleanField(
