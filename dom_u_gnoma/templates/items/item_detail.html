@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Каталог изделий{% endblock title %}
+{% block content %}
+  {% load thumbnail %}
+  {{ item.name }}<br>
+  {% thumbnail item.image "400x400" crop="center" upscale=True as im %}
+    <img src="{{ im.url }}"><br>
+  {% endthumbnail %}
+  Описание: {{ item.description }}<br>
+  Цена: {{ item.price }} руб.
+{% endblock content %}

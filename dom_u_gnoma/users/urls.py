@@ -32,4 +32,5 @@ urlpatterns = [
         views.user_activate,
         name='register_activate'
     ),
+    
 ]

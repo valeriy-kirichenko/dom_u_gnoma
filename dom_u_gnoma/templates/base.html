@@ -15,17 +15,15 @@
   </head>
   <body>
     <header>
-      Здесь будет меню, логотипчик и т.д.
-      {% comment %} {% include 'includes/header.html'%}  {% endcomment %}
+      {% include "includes/header.html" %} 
     </header>
     <main>
       {% block content %}
         Контент не подвезли :(
-      {% endblock %}
+      {% endblock content %}
     </main>
     <footer class="border-top text-center py-3">
-      Здесь будет какая то инфа типа контактов, разработчиков и т.д.
-      {% comment %} {% include 'includes/footer.html' %}    {% endcomment %}
+      {% include "includes/footer.html" %}   
     </footer>
   </body>
 </html>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Каталог изделий{% endblock title %}
+{% block content %}
+  {% load thumbnail %}
+  {% for item in items %}
+    <a href={% url "items:item_detail" item.id %}>{{ item.name }}</a><br>
+    {% thumbnail item.image "400x400" crop="center" upscale=True as im %}<br>
+      <img src="{{ im.url }}"><br>
+    {% endthumbnail %}<hr>
+  {% endfor %} 
+{% endblock content %}

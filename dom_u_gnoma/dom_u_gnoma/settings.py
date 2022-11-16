@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'sorl.thumbnail',
+    'debug_toolbar',
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'items.apps.ItemsConfig',
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'dom_u_gnoma.urls'
@@ -141,3 +144,7 @@ EMAIL_HOST_USER = 'vfvjy777@yandex.ru'
 EMAIL_HOST_PASSWORD = '24.12.1991kir'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Дом у гнома <vfvjy777@yandex.ru>'
+
+# Настройки аутентификации
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
