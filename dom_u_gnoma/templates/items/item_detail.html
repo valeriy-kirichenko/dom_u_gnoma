@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Каталог изделий{% endblock title %}
 {% block content %}
-  {% load thumbnail %}
-  {{ item.name }}<br>
-  {% thumbnail item.image "400x400" crop="center" upscale=True as im %}
-    <img src="{{ im.url }}"><br>
-  {% endthumbnail %}
-  Описание: {{ item.description }}<br>
-  Цена: {{ item.price }} руб.
+  <div class="row">
+    <div class="col col-xxl-4">
+      {% load thumbnail %}
+      {% thumbnail item.image "400x400" crop="center" upscale=True as im %}
+        <img src="{{ im.url }}">
+      {% endthumbnail %}
+    </div>
+    <div class="col">
+      <h1>{{ item.name }}</h1><br>
+      Описание: {{ item.description }}<br>
+      Цена: {{ item.price }} руб.<br>
+      <a href=''>Добавить в корзину</a>
+    </div>
+</div>  
 {% endblock content %}

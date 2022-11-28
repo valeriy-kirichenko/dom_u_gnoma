@@ -3,9 +3,15 @@
 {% block content %}
   {% load thumbnail %}
   {% for item in items %}
-    <a href={% url "items:item_detail" item.id %}>{{ item.name }}</a><br>
-    {% thumbnail item.image "400x400" crop="center" upscale=True as im %}<br>
-      <img src="{{ im.url }}"><br>
-    {% endthumbnail %}<hr>
+    <div class="row">
+      <div class="col col-xxl-3">
+        {% thumbnail item.image "250x250" crop="center" upscale=True as im %}<br>
+          <img src="{{ im.url }}"><br>
+        {% endthumbnail %}
+      </div>
+      <div class="col">
+        <h3><a href={% url "items:item_detail" item.id %}>{{ item.name }}</a><br></h3>
+      </div>
+    </div><hr>
   {% endfor %} 
 {% endblock content %}

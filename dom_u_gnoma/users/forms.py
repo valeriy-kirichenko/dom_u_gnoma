@@ -16,19 +16,6 @@ class CreationForm(UserCreationForm):
             attrs={'placeholder': 'Введите имя пользователя'}
         ),
     )
-    first_name = forms.CharField(
-        label='Имя',
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Введите ваше настоящее имя'}
-        ),
-    )
-    last_name = forms.CharField(
-        label='Фамилия',
-        required=False,
-        widget=forms.TextInput(
-            attrs={'placeholder': 'Введите вашу фамилию'}
-        ),
-    )
     email = forms.EmailField(
         label='Электронная почта',
         widget=forms.TextInput(
@@ -38,8 +25,16 @@ class CreationForm(UserCreationForm):
     send_messages = forms.BooleanField(
         label='Рассылка',
         required=False,
-        help_text=('Хотите ли вы получать письма о выходе новых изделий на'
-                   ' указанную электронную почту?'),
+        help_text=('Я хочу получать письма при новых поступлениях изделий'),
+        widget=forms.CheckboxInput()
+    )
+    policy = forms.BooleanField(
+        label='',
+        required=True,
+        help_text=('Я даю свое согласие на обработку персональных данных'
+                   ' на условиях, определенных '
+                   '<a href={% url "" %}>'
+                   'Политикой конфиденциальности</a>'),
         widget=forms.CheckboxInput()
     )
 
@@ -55,5 +50,10 @@ class CreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = (
-            'username', 'first_name', 'last_name', 'email', 'send_messages'
+            'username',
+            'email',
+            'password1',
+            'password2',
+            'send_messages',
+            'policy',
         )

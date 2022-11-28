@@ -10,25 +10,23 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.utils.encoding import force_str
+from dotenv import find_dotenv, load_dotenv
+
+
+load_dotenv(find_dotenv())
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = force_str(os.getenv('SECRET_KEY'))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jccs26!e+@&-&a8va&kx84yzz^r@b1s@&ss+xgr@n5*$2ld!%3'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'sorl.thumbnail',
@@ -76,39 +74,34 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dom_u_gnoma.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': force_str(os.getenv('ENGINE')),
         'NAME': BASE_DIR / 'db.sqlite3',
+        'USER': force_str(os.getenv('USER')),
+        'PASSWORD': force_str(os.getenv('PASSWORD'))
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+            'django.contrib.auth.password_validation'
+            '.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'ru'
 
@@ -121,16 +114,11 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.joinpath('media')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -138,12 +126,12 @@ AUTH_USER_MODEL = 'users.User'
 
 # Настройки для отправки писем
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'vfvjy777@yandex.ru'
-EMAIL_HOST_PASSWORD = '24.12.1991kir'
+EMAIL_HOST = force_str(os.getenv('EMAIL_HOST'))
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER = force_str(os.getenv('EMAIL_HOST_USER'))
+EMAIL_HOST_PASSWORD = force_str(os.getenv('EMAIL_HOST_PASSWORD'))
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Дом у гнома <vfvjy777@yandex.ru>'
+DEFAULT_FROM_EMAIL = force_str(os.getenv('DEFAULT_FROM_EMAIL'))
 
 # Настройки аутентификации
 LOGIN_REDIRECT_URL = '/'

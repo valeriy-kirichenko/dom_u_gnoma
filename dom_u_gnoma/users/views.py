@@ -11,7 +11,7 @@ from .utils import signer
 
 def user_activate(request, sign):
     try:
-        username = signer.unsign(sign) 
+        username = signer.unsign(sign)
     except BadSignature:
         return render(request, 'users/bad_signature.html')
     user = get_object_or_404(User, username=username)
