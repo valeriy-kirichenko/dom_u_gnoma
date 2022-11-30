@@ -19,9 +19,10 @@ class Item(models.Model):
             MinValueValidator(0, 'Вес не может быть отрицательным'),
         )
     )
+    is_published = models.BooleanField('Опубликовано', default=True)
 
     class Meta:
-        ordering: Tuple[str] = ('id',)
+        ordering: Tuple[str] = ('-id',)
         verbose_name: str = 'Изделие'
         verbose_name_plural: str = 'Изделия'
 
