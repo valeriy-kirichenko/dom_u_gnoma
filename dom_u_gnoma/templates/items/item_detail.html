@@ -12,7 +12,11 @@
       <h1>{{ item.name }}</h1><br>
       Описание: {{ item.description }}<br>
       Цена: {{ item.price }} руб.<br>
-      <a href=''>Добавить в корзину</a>
+      {% if added %}
+        <a href="{% url 'cart:delete_from_cart' item.id %}">Удалить из корзины</a>
+      {% else %}
+        <a href="{% url 'cart:add_to_cart' item.id %}">Добавить в корзину</a>
+      {% endif %}
     </div>
 </div>  
 {% endblock content %}

@@ -3,7 +3,6 @@ from django.db import models
 from typing import Tuple
 
 from .utils import image_directory_path
-from users.models import User
 
 
 class Item(models.Model):
@@ -30,34 +29,3 @@ class Item(models.Model):
         """Возвращает строковое представление модели"""
 
         return self.name
-
-
-class Cart(models.Model):
-    """Модель для списка покупок.
-
-    Attributes:
-        user (int): id пользователя.
-        recipe (int): id рецепта.
-    """
-
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name='cart',
-        verbose_name='Пользователь'
-    )
-    item = models.ForeignKey(
-        Item,
-        on_delete=models.CASCADE,
-        related_name='cart',
-        verbose_name='Изделие'
-    )
-
-    class Meta:
-        verbose_name = 'Корзина'
-        verbose_name_plural = 'Корзины'
-
-    def __str__(self):
-        """Возвращает строковое представление модели"""
-
-        return f'{self.user}: {self.item}'

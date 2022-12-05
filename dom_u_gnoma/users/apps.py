@@ -1,20 +1,17 @@
 from django.apps import AppConfig
+from django.contrib.auth.signals import user_logged_in
 from django.dispatch import Signal
-
-from .utils import send_activation_notification
 
 
 user_registered = Signal()
-
-
-def user_registered_dispatcher(sender, **kwargs):
-    send_activation_notification(kwargs['instance'])
-
-
-user_registered.connect(user_registered_dispatcher)
 
 
 class UsersConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'users'
     verbose_name = 'Пользователи'
+
+    def ready(self):
+        from . import signals
+        user_registered.connect(signals.user_registered_dispatcher)
+        user_logged_in.connect(signals.user_logged_in_dispatcher)

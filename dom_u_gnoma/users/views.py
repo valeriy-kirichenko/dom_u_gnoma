@@ -1,12 +1,12 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.core.signing import BadSignature 
+from django.core.signing import BadSignature
 from django.views.generic import CreateView, TemplateView
 from django.shortcuts import get_object_or_404, render
 
 from django.urls import reverse_lazy
 
 from .forms import CreationForm, User
-from .utils import signer
+from .signals import signer
 
 
 def user_activate(request, sign):

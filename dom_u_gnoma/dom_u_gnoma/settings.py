@@ -18,6 +18,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'sorl.thumbnail',
     'debug_toolbar',
+    'cart.apps.CartConfig',
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'items.apps.ItemsConfig',
@@ -123,3 +124,5 @@ DEFAULT_FROM_EMAIL = force_str(os.getenv('DEFAULT_FROM_EMAIL'))
 # Настройки аутентификации
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+SESSION_CART = 'cart'  # Корзина, доступна так же для анонимов
