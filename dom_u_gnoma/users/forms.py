@@ -33,7 +33,7 @@ class CreationForm(UserCreationForm):
         required=True,
         help_text=('Я даю свое согласие на обработку персональных данных'
                    ' на условиях, определенных '
-                   '<a href={% url "" %}>'
+                   '<a href={% url "" %} target="_blank">'
                    'Политикой конфиденциальности</a>'),
         widget=forms.CheckboxInput()
     )

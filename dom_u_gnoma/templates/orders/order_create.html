@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Оформление заказа{% endblock title %}
+{% block content %}
+  <div class="order-group">
+    <div class="order-form">
+      <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Заказать</button>
+      </form>
+    </div>
+    <div class="items">
+      <strong>Изделия:</strong><br>
+      <ul>
+        {% for item in items %}
+          <li>{{ item.name }} - {{ item.price }} руб.</li>
+        {% endfor %}<br>
+        <strong>Итого: {{ total_price }}</strong><br>
+      </ul>
+    </div>
+  </div>
+{% endblock content %}

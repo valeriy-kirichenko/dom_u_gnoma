@@ -6,7 +6,7 @@ from cart.models import Cart
 
 
 def catalog(request):
-    items = Item.objects.all()
+    items = Item.objects.filter(is_published=True)
     context = {'items': items}
     return render(request, 'items/catalog.html', context)
 

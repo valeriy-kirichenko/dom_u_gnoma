@@ -15,9 +15,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 INSTALLED_APPS = [
     'sorl.thumbnail',
     'debug_toolbar',
+    'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
@@ -102,10 +107,11 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static/'
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.joinpath('media')
+
+STATICFILES_DIRS = [BASE_DIR.joinpath('static')]
+STATIC_URL = '/static/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -122,6 +128,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = force_str(os.getenv('DEFAULT_FROM_EMAIL'))
 
 # Настройки аутентификации
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 

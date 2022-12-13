@@ -1,6 +1,7 @@
+from typing import Tuple
+
 from django.core.validators import MinValueValidator
 from django.db import models
-from typing import Tuple
 
 from .utils import image_directory_path
 
