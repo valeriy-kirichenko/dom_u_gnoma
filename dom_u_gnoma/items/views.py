@@ -6,7 +6,9 @@ from cart.models import Cart
 
 
 def catalog(request):
-    items = Item.objects.filter(is_published=True)
+    items = Item.objects.filter(
+        is_published=True
+    ).values('id', 'name', 'image')
     context = {'items': items}
     return render(request, 'items/catalog.html', context)
 
@@ -15,7 +17,12 @@ def item_detail(request, id):
     session = request.session
     session['path'] = request.path
     session.modified = True
-    item = get_object_or_404(Item, id=id)
+    item = get_object_or_404(
+        Item.objects.values(
+            'id', 'name', 'image', 'description', 'price'
+        ),
+        id=id
+    )
     if (
         session.get(settings.SESSION_CART) and
         str(id) in session[settings.SESSION_CART].keys() or
