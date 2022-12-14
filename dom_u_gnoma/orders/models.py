@@ -60,6 +60,10 @@ class Order(models.Model):
         'Оплачено',
         default=False,
     )
+    checked = models.BooleanField(
+        'Проверен',
+        default=False,
+    )
 
     class Meta:
         ordering: Tuple[str] = ('-id',)

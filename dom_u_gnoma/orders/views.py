@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
 from django.forms import ModelForm
 from django.http import HttpResponse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from django.urls import reverse_lazy
 
 from .forms import OrderCreationForm
@@ -15,7 +15,7 @@ from cart.utils import get_cart_items
 
 class OrderCreateView(LoginRequiredMixin, CreateView):
     form_class = OrderCreationForm
-    success_url = reverse_lazy('about:index')
+    success_url = reverse_lazy('orders:order_done')
     template_name = 'orders/order_create.html'
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
@@ -44,3 +44,7 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
         )
         cart.delete()
         return super().form_valid(form)
+
+
+class OrderDoneView(TemplateView):
+    template_name = 'orders/order_done.html'

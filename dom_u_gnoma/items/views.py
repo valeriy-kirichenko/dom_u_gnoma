@@ -2,6 +2,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404, render
 
 from .models import Item
+from .utils import get_and_update_session
 from cart.models import Cart
 
 
@@ -14,9 +15,7 @@ def catalog(request):
 
 
 def item_detail(request, id):
-    session = request.session
-    session['path'] = request.path
-    session.modified = True
+    session = get_and_update_session(request)
     item = get_object_or_404(
         Item.objects.values(
             'id', 'name', 'image', 'description', 'price'
