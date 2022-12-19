@@ -22,6 +22,7 @@ INTERNAL_IPS = [
 INSTALLED_APPS = [
     'sorl.thumbnail',
     'debug_toolbar',
+    'admin_panel.apps.AdminPanelConfig',
     'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
     'core.apps.CoreConfig',

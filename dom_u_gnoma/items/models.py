@@ -4,6 +4,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 from .utils import image_directory_path
+from orders.models import Order
 
 
 class Item(models.Model):
@@ -20,6 +21,14 @@ class Item(models.Model):
         )
     )
     is_published = models.BooleanField('Опубликовано', default=True)
+    order = models.ForeignKey(
+        Order,
+        verbose_name='Заказ',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='items'
+    )
 
     class Meta:
         ordering: Tuple[str] = ('-id',)

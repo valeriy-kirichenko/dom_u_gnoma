@@ -13,9 +13,9 @@ def add_to_cart(request, id):
 
 def delete_from_cart(request, id):
     add_delete_from_cart(request, id, add=False)
-    if request.session['path'] != reverse('cart:items'):
-        return redirect(request.session['path'], id=id)
-    return redirect('cart:items')
+    if request.session['path'] == reverse('cart:items'):
+        return redirect('cart:items')
+    return redirect(request.session['path'])
 
 
 def items(request):

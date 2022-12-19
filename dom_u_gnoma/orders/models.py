@@ -1,8 +1,8 @@
+from datetime import datetime
 from typing import Tuple
 
 from django.db import models
 
-from items.models import Item
 from users.models import User
 
 
@@ -56,6 +56,7 @@ class Order(models.Model):
         max_length=254,
         help_text='Введите вашу электронную почту'
     )
+    created = models.DateTimeField('Дата создания', default=datetime.now())
     payed = models.BooleanField(
         'Оплачено',
         default=False,
@@ -74,26 +75,3 @@ class Order(models.Model):
         """Возвращает строковое представление модели"""
 
         return f'{self.id} - {self.user.last_name} {self.user.first_name}'
-
-
-class OrderItem(models.Model):
-    order = models.ForeignKey(
-        Order,
-        on_delete=models.CASCADE,
-        verbose_name='Заказ'
-    )
-    item = models.ForeignKey(
-        Item,
-        on_delete=models.CASCADE,
-        verbose_name='Изделие'
-    )
-
-    class Meta:
-        ordering: Tuple[str] = ('-order',)
-        verbose_name: str = 'Изделия в заказе'
-        verbose_name_plural: str = 'Изделия в заказе'
-
-    def __str__(self):
-        """Возвращает строковое представление модели"""
-
-        return f'{self.order} - {self.item}'

@@ -1,0 +1,62 @@
+{% extends "admin_panel/admin_menu.html" %}
+{% block title %}Заказы{% endblock title %}
+{% block admin-content %}
+  <div class="container overflow-hidden">
+    <h2>Заказы</h2><br>
+    {% for order in orders %}
+        <div class="row p-4 border bg-light shadow-sm">
+          <div class="row p-1">
+            <h3>
+              Заказ №{{ order.id }}
+              {% if not order.checked %}
+                <sup class="text-danger">Не обработан</sup>
+              {% else %}
+                <sup class="text-success">Обработан</sup>
+              {% endif %}
+            </h3>
+          </div>
+          <div class="row col-xxl-8">
+            <ul class="col-4">
+              <li class="card-text">Имя: {{ order.first_name }}</li>
+              <li class="card-text">Отчество: {{ order.middle_name }}</li>
+              <li class="card-text">Фамилия: {{ order.last_name }}</li>
+              <li class="card-text">Город: {{ order.city }}</li>
+              <li class="card-text">Улица: {{ order.street }}</li>
+            </ul>
+            <ul class="col-4">
+              <li class="card-text">Дом/корпус/строение: {{ order.house }}</li>
+              <li class="card-text">Почтовый индекс: {{ order.postal_code }}</li>
+              <li class="card-text">Телефон: {{ order.phone }}</li>
+              <li class="card-text">Электронная почта: {{ order.email }}</li>
+            </ul>
+            
+            <ul class="col-4">
+              Изделия в заказе:
+            {% for item in order.items.all %}
+              <li>{{ item.name }} - {{ item.price }}руб</li>
+            {% endfor %}<br>
+            <h4>Итого: {{ order.total }}руб</h4>
+            </ul>
+          </div>
+          <div class="row">
+            <h2>
+              {% if order.payed %}
+              <strong class="text-success">Оплачен</strong>
+              {% else %}
+                <strong class="text-danger">Не оплачен</strong>
+              {% endif %}
+            </h2>
+          </div>
+          <div class="col">
+            <a href={% url "admin_panel:order_message" order.id %} class="btn btn-success">Отправить сообщение</a>
+            {% if order.payed %}
+              <a href={% url "admin_panel:payed" order.id %} class="btn btn-success">Отметить как неоплаченный</a>
+            {% else %}
+              <a href={% url "admin_panel:payed" order.id %} class="btn btn-success">Отметить как оплаченный</a>
+            {% endif %}
+            <a href={% url "admin_panel:order_delete" order.id %} class="btn btn-danger">Удалить заказ</a><br>
+          </div>
+        </div><br>
+    {% endfor %}
+  </div>
+{% endblock admin-content %}

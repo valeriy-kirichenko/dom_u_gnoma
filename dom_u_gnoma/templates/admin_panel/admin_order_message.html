@@ -1,0 +1,13 @@
+{% extends "admin_panel/admin_menu.html" %}
+{% block title %}Заказы{% endblock title %}
+{% block admin-content %}
+  <div class="container overflow-hidden">
+    <form method='post'>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">
+        Отправить
+      </button>
+    </form>
+  </div>
+{% endblock admin-content %}

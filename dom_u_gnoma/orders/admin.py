@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Order, OrderItem
+from .models import Order
 
 
 @admin.register(Order)
@@ -16,10 +16,3 @@ class OrderAdmin(admin.ModelAdmin):
     )
     search_fields = ('id', 'user',)
     list_filter = ('id', 'user',)
-
-
-@admin.register(OrderItem)
-class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ('order', 'item',)
-    search_fields = ('order', 'item',)
-    list_filter = ('order',)

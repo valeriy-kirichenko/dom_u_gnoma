@@ -10,7 +10,7 @@ def get_session_cart(session):
     return session[settings.SESSION_CART]
 
 
-def get_cart_items(user, session):
+def get_cart_items(user, session=None):
     if user.is_authenticated:
         ids = Cart.objects.filter(user=user.id).values_list('item', flat=True)
     else:

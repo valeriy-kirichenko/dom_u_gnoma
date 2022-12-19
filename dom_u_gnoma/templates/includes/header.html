@@ -8,3 +8,6 @@
 {% else %}
   <a href={% url "users:logout" %}>Выйти</a>
 {% endif %}
+{% if user.is_superuser %}
+  <a href={% url "admin_panel:menu" %}>Админка</a>
+{% endif %}

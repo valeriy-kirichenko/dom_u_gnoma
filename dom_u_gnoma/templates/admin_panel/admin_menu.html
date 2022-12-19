@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Меню администратора{% endblock title %}
+{% block content %}
+  <div class="min-vh-100">
+    <div class="row">
+      <div class="col-2 p-3 bg-secondary bg-opacity-10 min-vh-100 text-center">
+        <a href={% url "admin_panel:orders" %} class="btn btn-primary">
+          Заказы {% if count %}<strong>(+{{ count }})</strong>{% endif %}
+        </a><br>
+      </div>
+      <div class="col">
+        {% block admin-content %}
+          Menu
+        {% endblock admin-content %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}
