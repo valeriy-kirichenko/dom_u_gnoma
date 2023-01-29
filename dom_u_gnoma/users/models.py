@@ -12,16 +12,17 @@ class User(AbstractUser):
         поступлении новых изделий.
 
     Attributes:
-        username (str): имя пользователя.
-        password (str): пароль.
-        email (str): электронная почта.
-        first_name (str): имя.
-        last_name (str): фамилия.
-        send_messages (bool): флаг для рассылки сообщений.
+        username (CharField): имя пользователя.
+        password (CharField): пароль.
+        email (EmailField): электронная почта.
+        first_name (CharField): имя.
+        last_name (CharField): фамилия.
+        send_messages (BooleanField): флаг для рассылки сообщений.
     """
 
     USERNAME_FIELD: str = 'email'
     REQUIRED_FIELDS: List[str] = ['username', 'first_name']
+
     username = models.CharField(
         'Имя пользователя',
         max_length=150,

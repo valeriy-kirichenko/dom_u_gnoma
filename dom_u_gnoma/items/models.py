@@ -8,6 +8,18 @@ from orders.models import Order
 
 
 class Item(models.Model):
+    """Модель для изделия.
+
+    Attributes:
+        name (CharField): название изделия.
+        description (TextField): описание изделия.
+        price (DecimalField): цена.
+        image (ImageField): картинка.
+        weight (IntegerField): вес изделия.
+        is_published (BooleanField): опубликовано или нет.
+        order (ForeignKey): id заказа.
+    """
+
     name = models.CharField('Название', max_length=200, unique=True)
     description = models.TextField('Описание',)
     price = models.DecimalField('Цена', max_digits=7, decimal_places=2)

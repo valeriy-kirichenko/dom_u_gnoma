@@ -12,6 +12,8 @@ class UsersConfig(AppConfig):
     verbose_name = 'Пользователи'
 
     def ready(self):
+        """Подключает сигналы к их диспетчерам после регистрации приложения."""
+
         from . import signals
         user_registered.connect(signals.user_registered_dispatcher)
         user_logged_in.connect(signals.user_logged_in_dispatcher)

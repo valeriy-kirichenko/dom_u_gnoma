@@ -7,6 +7,8 @@ class AdminPanelConfig(AppConfig):
     name = 'admin_panel'
 
     def ready(self):
+        """Подключает сигнал к его диспетчеру после регистрации приложения."""
+
         from . import models, signals
         post_save.connect(
             signals.order_checked_dispatcher, models.OrderMessage

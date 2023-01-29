@@ -7,6 +7,24 @@ from users.models import User
 
 
 class Order(models.Model):
+    """Модель для изделия.
+
+    Attributes:
+        user (ForeignKey): id пользователя.
+        last_name (CharField): фамилия.
+        first_name (CharField): имя.
+        middle_name (CharField): отчество.
+        city (CharField): город.
+        street (CharField): улица.
+        house (CharField): дом/корпус/строение.
+        postal_code (CharField): почтовый индекс.
+        phone (CharField): телефон.
+        email (EmailField): электронная почта.
+        created (DateTimeField): дата создания заказа.
+        payed (BooleanField): статус оплаты заказа.
+        checked (BooleanField): статус обработки заказа.
+    """
+
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

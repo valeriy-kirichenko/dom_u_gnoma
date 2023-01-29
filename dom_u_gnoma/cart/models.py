@@ -9,8 +9,8 @@ class Cart(models.Model):
     """Модель для списка покупок.
 
     Attributes:
-        user (int): id пользователя.
-        recipe (int): id рецепта.
+        user (ForeignKey): id пользователя.
+        item (ForeignKey): id изделия.
     """
 
     user = models.ForeignKey(

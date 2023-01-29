@@ -9,6 +9,15 @@ User = get_user_model()
 
 
 class CreationForm(UserCreationForm):
+    """Модель формы для регистрации пользователя.
+
+    Attributes:
+        username (CharField): имя пользователя.
+        email (EmailField): электронная почта.
+        send_messages (BooleanField): согласие на получение рассылки.
+        policy (BooleanField): согласие на обработку персональных данных.
+    """
+
     username = forms.CharField(
         label='Имя пользователя',
         widget=forms.TextInput(
@@ -38,11 +47,23 @@ class CreationForm(UserCreationForm):
     )
 
     def save(self, commit=True):
+        """Устанавливает пароль, статус - неактивный и отправляет сигнал
+        для отправки письма активации пользователя.
+
+        Args:
+            commit (bool, optional): флаг сохранения обьекта в базе данных.
+            По умолчанию - True.
+
+        Returns:
+            User: обьект пользователя.
+        """
+
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password1'])
         user.is_active = False
         if commit:
             user.save()
+        # Отправляем сигнал для отправки письма активации пользователя.
         user_registered.send(UserCreationForm, instance=user)
         return user
 

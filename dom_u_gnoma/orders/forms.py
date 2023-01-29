@@ -4,6 +4,13 @@ from .models import Order
 
 
 class OrderCreationForm(forms.ModelForm):
+    """Модель формы для создания заказа.
+
+    Attributes:
+        policy (BooleanField): дополнительное поле согласия на обработку
+        персональных данных.
+    """
+
     policy = forms.BooleanField(
         label='',
         required=True,

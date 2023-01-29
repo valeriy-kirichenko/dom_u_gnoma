@@ -10,7 +10,28 @@ from .signals import signer
 
 
 def user_activate(request, sign):
+    """View-функция для активации пользователя.
+
+    Args:
+        request (HttpRequest): обьект запроса.
+        sign (str): цифровая подпись.
+
+    Если цифровая подпись оказалась скомпрометированна:
+        Returns:
+            HttpResponse: обьект ответа, страница с сообщением о неуспешной
+            активации.
+    Если пользователь уже был активирован ранее:
+        Returns:
+            HttpResponse: обьект ответа, страница с сообщением о том что
+            пользователь был активирован ранее.
+    Иначе:
+        Returns:
+            HttpResponse: обьект ответа, страница с сообщением об успешной
+            активации.
+    """
+
     try:
+        # Пытаемся получить имя пользователя из переданной цифровой подписи.
         username = signer.unsign(sign)
     except BadSignature:
         return render(request, 'users/bad_signature.html')

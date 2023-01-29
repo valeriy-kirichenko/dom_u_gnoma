@@ -7,6 +7,15 @@ from cart.models import Cart
 
 
 def catalog(request):
+    """View-функция для отображения изделий в аталоге.
+
+    Args:
+        request (HttpRequest): обьект запроса.
+
+    Returns:
+        HttpResponse: обьект ответа, страница каталога.
+    """
+
     items = Item.objects.filter(
         is_published=True
     ).values('id', 'name', 'image')
@@ -15,6 +24,16 @@ def catalog(request):
 
 
 def item_detail(request, id):
+    """View-функция для отображения страницы изделия.
+
+    Args:
+        request (HttpRequest): обьект запроса.
+        id (int): id изделия.
+
+    Returns:
+        HttpResponse: обьект ответа, страница изделия.
+    """
+
     session = get_and_update_session(request)
     item = get_object_or_404(
         Item.objects.values(
@@ -22,6 +41,8 @@ def item_detail(request, id):
         ),
         id=id
     )
+    # Проверяем находится ли изделие в корзине анонимного/залогиненного
+    # пользователя что бы передать в контекст переменную added.
     if (
         session.get(settings.SESSION_CART) and
         str(id) in session[settings.SESSION_CART].keys() or

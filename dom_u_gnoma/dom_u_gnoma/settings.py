@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'admin_panel.apps.AdminPanelConfig',
     'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
-    'core.apps.CoreConfig',
     'users.apps.UsersConfig',
     'items.apps.ItemsConfig',
     'django.contrib.admin',
